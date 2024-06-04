@@ -15,19 +15,17 @@ if ($conn->connect_error) {
 }
 
 // Esecuzione di una query
-$query = "SELECT * FROM marketplace";
+$query = "SELECT * FROM item";
 $result = $conn->query($query);
 
 if ($result->num_rows > 0) {
     echo "<table border='1'>";
-    echo "<tr><th>Prodotto</th><th>Domanda Quantità</th></tr>";
+    echo "<th>Quantità</th><th>Prezzo</th><th>Tipo</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . $row['prodotto'] . "</td>";
-        echo "<td>" . $row['domanda_quantita'] . "</td>";
-        echo "<td>" . $row['domanda_quantita'] . "</td>";
-        echo "<td>" . $row['domanda_quantita'] . "</td>";
-        echo "<td>" . $row['domanda_quantita'] . "</td>";
+        echo "<td>" . $row['quantita'] . "</td>";
+        echo "<td>" . $row['prezzo'] . "</td>";
+        echo "<td>" . $row['tipo'] . "</td>";
         echo "</tr>";
     }
     echo "</table>";
@@ -44,6 +42,7 @@ $conn->close();
 
 ?>
 
+<br>
 
 <form action="insert.php" method="post">
     <label for="prezzo">Prezzo:</label>
