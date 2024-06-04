@@ -15,20 +15,46 @@ if ($conn->connect_error) {
 }
 
 // Esecuzione di una query
-$query = "SELECT * FROM tabella";
+$query = "SELECT * FROM marketplace";
 $result = $conn->query($query);
 
-// Elaborazione dei risultati
 if ($result->num_rows > 0) {
+    echo "<table border='1'>";
+    echo "<tr><th>Prodotto</th><th>Domanda Quantità</th></tr>";
     while ($row = $result->fetch_assoc()) {
-        echo $row['colonna1'] . " " . $row['colonna2'] . "\n";
+        echo "<tr>";
+        echo "<td>" . $row['prodotto'] . "</td>";
+        echo "<td>" . $row['domanda_quantita'] . "</td>";
+        echo "<td>" . $row['domanda_quantita'] . "</td>";
+        echo "<td>" . $row['domanda_quantita'] . "</td>";
+        echo "<td>" . $row['domanda_quantita'] . "</td>";
+        echo "</tr>";
     }
+    echo "</table>";
 } else {
     echo "Nessun risultato";
 }
 
 // Chiusura della connessione
 $conn->close();
+
+
+//inserire prezzo e un tasto invia method post
+
+
 ?>
 
 
+<form action="insert.php" method="post">
+    <label for="prezzo">Prezzo:</label>
+    <input type="number" step="0.01" id="prezzo" name="prezzo" required>
+    
+    <label for="tipo">Tipo:</label>
+    <select id="tipo" name="tipo" required>
+        <option value="">Seleziona tipo</option>
+        <option value="O">Offerta</option>
+        <option value="D">Domanda</option>
+    </select>
+    
+    <input type="submit" value="Invia">
+</form>
