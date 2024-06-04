@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
        
         echo "<tr>";
-        echo "<td>" . $row['quantita']  . "</td>";
+        echo "<td>" . $row['totale']  . "</td>";
         echo "<td>" . $row['prezzo'] . "</td>";
         echo "<td>" . $row['tipo']. "</td>";
         echo "</tr>";
@@ -44,7 +44,7 @@ if ($result2->num_rows > 0) {
     while ($row2 = $result2->fetch_assoc()) {
        
         echo "<tr>";
-        echo "<td>" . $row2['quantita']  . "</td>";
+        echo "<td>" . $row2['totale']  . "</td>";
         echo "<td>" . $row2['prezzo'] . "</td>";
         echo "<td>" . $row2['tipo']. "</td>";
         echo "</tr>";
