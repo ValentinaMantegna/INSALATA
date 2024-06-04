@@ -3,7 +3,7 @@
 // Configurazione della connessione
 $host = 'localhost';
 $username = 'root';
-$password = 'Sw2023';
+$password = 'sw2023';
 $dbname = 'insalata';
 
 // Creazione della connessione
@@ -67,16 +67,91 @@ $conn->close();
 
 <br>
 
-<form action="insert.php" method="post">
-    <label for="prezzo">Prezzo:</label>
-    <input type="number" step="0.01" id="prezzo" name="prezzo" required>
-    
-    <label for="tipo">Tipo:</label>
-    <select id="tipo" name="tipo" required>
+<button onclick="showForm()">Aggiungi nuovo dato</button>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+    <form id="insertForm" action="insert.php" method="post">
+      <label for="prezzo">Prezzo:</label>
+      <input type="number" step="0.01" id="prezzo" name="prezzo" required>
+      
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" name="tipo" required>
         <option value="">Seleziona tipo</option>
         <option value="O">Offerta</option>
         <option value="D">Domanda</option>
-    </select>
+      </select>
+      
+      <input type="submit" value="Invia">
+    </form>
+  </div>
+</div>
+
+<script>
+function showForm() {
+    var modal = document.getElementById('modal');
+    modal.style.display = 'block';
+}
+
+function closeForm() {
+    var modal = document.getElementById('modal');
+    modal.style.display = 'none';
+}
+
+document.getElementById('insertForm').addEventListener('submit', function(event) {
+    event.preventDefault();
     
-    <input type="submit" value="Invia">
-</form>
+    var formData = new FormData(this);
+    
+    fetch('insert.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Aggiorna la pagina dopo l'inserimento dei dati
+        location.reload();
+    })
+    .catch(error => console.error('Errore:', error));
+});
+</script>
+
+
+<style>
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+table {
+     float: left; margin-right: 10px; 
+     }
+</style>
