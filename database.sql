@@ -4,7 +4,7 @@ CREATE DATABASE insalata;
 -- Selezione del database
 USE insalata;
 
-CREATE TABLE vendite (
+CREATE TABLE marketplace (
     id INT AUTO_INCREMENT,
     prodotto VARCHAR(50),
     domanda_quantita INT,
