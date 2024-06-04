@@ -1,2 +1,0 @@
-Select *, sum(quantita) as totale,prezzo from 'items' where tipo = 'O' group by prezzo;
-Select *, sum(quantita) as totale,prezzo from 'items' where tipo = 'D' group by prezzo; 

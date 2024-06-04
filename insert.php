@@ -3,7 +3,7 @@
 // Configurazione della connessione
 $host = 'localhost';
 $username = 'root';
-$password = 'sw2023';
+$password = 'Sw2023';
 $dbname = 'insalata';
 
 // Creazione della connessione
